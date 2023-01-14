@@ -85,10 +85,6 @@ curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add
 echo "deb https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-8.x.list
 sudo apt update
 sudo apt install filebeat
-
-USUARIO=$1
-
-sudo cat /home/$USUARIO/configfbeat.txt > /etc/filebeat/filebeat.yml
-sudo chown root filebeat.yml
+sudo cat $HOME/configfbeat.txt > /etc/filebeat/filebeat.yml
 sudo systemctl enable filebeat
 sudo systemctl start filebeat
