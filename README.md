@@ -26,12 +26,19 @@ Este script automatiza la instalación y configuración de un servidor web con P
 Nota: El script requiere acceso de administrador (sudo) para ejecutar. También, se asume que se tiene acceso a un servidor Elasticsearch y se ha configurado previamente.
 
 ### Instrucciones
-Para ejecutar ambos scripts en dos máquinas virtuales, sigue estos pasos:
+Para realizar la instalación y configuración de los servicios sigue los siguientes pasos:
 
-Asegúrate de tener acceso de administrador (sudo) en ambas máquinas virtuales.
-Asegúrate de tener conectividad entre las dos máquinas virtuales.
-Descarga los scripts en ambas máquinas virtuales en un directorio específico utilizando el comando wget o copiando el código manualmente en un archivo .sh y darle permisos de ejecución
-Ejecuta el primer script en la primera máquina virtual utilizando el comando bash nombre_del_script.sh
-Ejecuta el segundo script en la segunda máquina virtual utilizando el comando bash nombre_del_script.sh
-Verifica que ambos scripts se hayan ejecutado correctamente y que los servicios instalados estén funcionando correctamente.
+- Asegúrate de tener acceso de administrador (sudo) en ambas máquinas virtuales.
+- Asegúrate de tener conectividad entre las dos máquinas virtuales.
+- Asegúrate de tener Git instalado en ambas máquinas virtuales. Si no lo tienes, puedes instalarlo utilizando el comando sudo apt-get install git.
+- Abre una terminal en ambas máquinas virtuales.
+- Utiliza el comando git clone seguido de la URL del repositorio en GitHub para descargar el proyecto. "git clone https://github.com/GabrielMR1974/ELK-WPFbeat"
+- Una vez que se haya descargado el proyecto, entra en el directorio del proyecto.
+- Asegúrate de que los scripts tienen permisos de ejecución, si no es así utilizar el comando chmod +x elk.sh wpfbeat.sh
+- Mueve el archivo de configuración de filebeat "configfbeat.txt" al directorio home.
+- Ejecuta el script wpfbeat.sh en la máquina en la que se va instalar wordpress y filebeat.
+- Ejecuta el script elk.sh en la máquina en la que se va a realizar el análisis de los logs con el stack ELK.
+- En el archivo "/etc/filebeat/filebeat.yml", en el apartado "Logstash Output" modifica la variable hosts con la IP de la máquina en la que se instalará ELK, respetando el nro de puerto. Ej: "hosts: ["0.0.0.0:5044"]"
+- Verifica que ambos scripts se hayan ejecutado correctamente y que los servicios instalados estén funcionando correctamente.
+
 Nota: Es importante que antes de ejecutar los script se verifique que las máquinas virtuales cumplen con los requerimientos necesarios para ejecutar las aplicaciones que se instalaran.
